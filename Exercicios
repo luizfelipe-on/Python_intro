@@ -1,6 +1,6 @@
 # Exercício 1:
 
-d = 10 # distância em km
+d = 10 #distância em km
 t = 43.5 #tempo em min
 
 # Como 1milha = 1.61km e 1h = 60min, a velocidade média em milhas/h é:
