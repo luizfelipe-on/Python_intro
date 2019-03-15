@@ -1,1 +1,12 @@
+d = 10 # distancia em km
+t = 43.5 #tempo em min
 
+# Como 1milha = 1.61km e 1h = 60min, a velocidade media em milhas/h é:
+
+vmed = (d/1.61)/(t/60)
+print('a velocidade media (em milhas/h) é de ', vmed)
+
+# Sendo assim, o tempo medio por milha (em minutos) é de:
+
+tmed = (vmed**(-1))*60
+print('o tempo medio (em min/milha) é de ', tmed)
