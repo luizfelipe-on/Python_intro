@@ -13,7 +13,7 @@ print('a velocidade média (em milhas/h) é de ', vmed)
 tmed = (vmed**(-1))*60
 print('o tempo médio (em min/milha) é de ', tmed)
 
-# Exercicio 3:
+# Exercício 3:
 
 import math
 
