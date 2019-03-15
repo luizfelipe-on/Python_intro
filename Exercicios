@@ -1,12 +1,31 @@
-d = 10 # distancia em km
+# Exercício 1:
+
+d = 10 # distância em km
 t = 43.5 #tempo em min
 
-# Como 1milha = 1.61km e 1h = 60min, a velocidade media em milhas/h é:
+# Como 1milha = 1.61km e 1h = 60min, a velocidade média em milhas/h é:
 
 vmed = (d/1.61)/(t/60)
-print('a velocidade media (em milhas/h) é de ', vmed)
+print('a velocidade média (em milhas/h) é de ', vmed)
 
-# Sendo assim, o tempo medio por milha (em minutos) é de:
+# Sendo assim, o tempo médio por milha (em minutos) é de:
 
 tmed = (vmed**(-1))*60
-print('o tempo medio (em min/milha) é de ', tmed)
+print('o tempo médio (em min/milha) é de ', tmed)
+
+# Exercicio 3:
+
+import math
+
+# Função é y = 3*x**2 - 4*x - 10, logo:
+a = 3
+b = -4
+c = -10
+
+# Primeiramente devemos calcular delta:
+delta = (b**2)-4*a*c
+
+# Para então obter os zeros da função:
+x1 = (-b+math.sqrt(delta))/(2*a)
+x2 = (-b-math.sqrt(delta))/(2*a)
+print('as raízes são ',x1,' e ',x2)
