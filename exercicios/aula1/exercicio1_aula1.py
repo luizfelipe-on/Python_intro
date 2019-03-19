@@ -1,5 +1,3 @@
-# EXERCÍCIO 1
-
 # A distância (em km) e o tempo (em min) são, respectivamente: 
 d = 10 
 t = 43.5
