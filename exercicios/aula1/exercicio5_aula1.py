@@ -1,5 +1,3 @@
-# EXERCÍCIO 5
-
 # Meus valores de massa (em kg) e altura (em metros) são, respectivamente:
 M = 69
 A = 1.79
