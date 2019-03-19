@@ -1,5 +1,3 @@
-# EXERCÍCIO 2
-
 # Sabe-se que as velocidades da luz e do som (em m/s) são, respectivamente:
 v_luz = 3*10**8
 v_som = 343
