@@ -10,5 +10,3 @@ d = 0.25 # em milímetros (mm)
 # Convertendo lamda e d para metros, a distância entre dois máximos de interferência consecutivos é de:
 delta_y = (lamda*(10**(-9))*D) / (d*(10**(-3)))
 print('a distância entre dois máximos de interferência consecutivos é de', delta_y, 'metros')
-
-
