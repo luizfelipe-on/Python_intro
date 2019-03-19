@@ -1,5 +1,3 @@
-# EXERCÍCIO 4
-
 import math
 
 # A altura do poste e a sombra que ela projeta ao meio-dia (em metros) são, respectivamente:
