@@ -7,12 +7,12 @@ t = 43.5
 # Como 1 milha = 1.61 km e 1 h = 60 min, a velocidade média em milhas/h é:
 
 vmed = (d/1.61)/(t/60)
-print('a velocidade média é de ', vmed, ' milhas/h')
+print('a velocidade média é de', vmed, 'milhas/h')
 
 # Sendo assim, o tempo médio por milha (em min/milha) é de:
 
 tmed = (vmed**(-1))*60
-print('o tempo médio é de ', tmed, ' min/milha')
+print('o tempo médio é de', tmed, 'min/milha')
 
 # EXERCÍCIO 2
 
@@ -26,7 +26,7 @@ t_luz = 1029/299999657
 
 # Logo a distãncia d em que os fogos foram lançados é de:
 d = 3*(10**8)*t_luz
-print('a distância d em que os fogos foram lançados é de ', d, ' metros')
+print('a distância d em que os fogos foram lançados é de', d, 'metros')
 
 # EXERCÍCIO 3
 
@@ -43,7 +43,7 @@ delta = (b**2)-4*a*c
 # Para então obter os zeros da função:
 x1 = (-b+math.sqrt(delta))/(2*a)
 x2 = (-b-math.sqrt(delta))/(2*a)
-print('as raízes são ',x1,' e ',x2)
+print('as raízes são', x1, 'e', x2)
 
 # EXERCÍCIO 4
 
@@ -57,7 +57,7 @@ s = 0.5
 # Como o Python originalmente fornece o ângulo em radianos, há de se fazer a conversão para graus.
 # Para tal, basta multiplicar o resultado por (180/pi):
 teta_z = math.atan(s/h)*(180/math.pi)
-print('o ângulo zenital do Sol ao meio-dia é de :', teta_z, ' graus')
+print('o ângulo zenital do Sol ao meio-dia é de:', teta_z, 'graus')
 
 # EXERCÍCIO 5
 
@@ -67,13 +67,13 @@ A = 1.79
 
 # Então meu IMC é:
 IMC = M/(A**2)
-print('meu IMC é de ', IMC)
+print('meu IMC é de', IMC)
 
 # Já no caso do bebê:
 M = 11
 A = 0.7
 IMC = M/(A**2)
-print('o IMC do bebê é de ', IMC)
+print('o IMC do bebê é de', IMC)
 
 # EXERCÍCIO 6
 
@@ -84,8 +84,8 @@ h = 3 # altura em metros
 vo = 0 # velocidade inicial (repouso)
 g = 9.8 # aceleração gravitacional em m/(s**2)
 v = (vo**2+2*g*h)**0.5
-print('a velocidade final do objeto é de: ', v, ' m/s')
+print('a velocidade final do objeto é de:', v, 'm/s')
 
 # O tempo que o objeto leva para cair, por sua vez, pode ser obtido a partir de:
 t = (v-vo)/g
-print('o tempo que o objeto demora para cair é de: ', t, ' segundos')
+print('o tempo que o objeto demora para cair é de:', t, 'segundos')
