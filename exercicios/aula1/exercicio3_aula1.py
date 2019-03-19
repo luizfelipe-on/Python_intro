@@ -1,5 +1,3 @@
-# EXERCÍCIO 3
-
 import math
 
 # Função é y = 3*x**2 - 4*x - 10, logo:
