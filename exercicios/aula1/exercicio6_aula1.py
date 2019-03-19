@@ -1,6 +1,5 @@
 # A partir da equação de Torricelli, pode-se obter a velocidade final do objeto usando-se apenas a altura de queda.
 # Assumindo que o objeto inicialmente estava em repouso e sabendo que ele caiu de 3 metros:
-
 h = 3 # altura em metros
 vo = 0 # velocidade inicial (repouso)
 g = 9.8 # aceleração gravitacional em m/(s**2)
