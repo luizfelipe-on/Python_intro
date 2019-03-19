@@ -12,4 +12,3 @@ custo_entrega = entrega_primeiro + (numero_livros-1)*entrega_demais
 # Logo, o custo total é de:
 custo_total = custo_compra + custo_entrega
 print('o custo total da compra dos 60 livros é de', custo_total, 'reais')
-
