@@ -1,0 +1,81 @@
+# EXERCÍCIO 4
+
+# Sabe-se que 1 milha = 1610 m, logo a função que converte de milhas para metros é:
+def y(x):
+    y = x*1610
+    print x, 'milhas valem', y, 'metros'
+
+y(3)
+y(0.5)
+y(4.5)
+
+# Quanto à função que converte metros em milhas:
+def x(y):
+    x = y/float(1610) # usei o 'float' para que os resultados da divisão não fossem sempre números inteiros 
+    print y, 'metros valem', round(x,3), 'milhas'
+
+x(3220)
+x(1500)
+x(8000)
+
+# Já que 1 h = 3600 s, então a função que converte de horas para segundos é:
+def s(h):
+    s = h*3600
+    print h, 'horas valem', s, 'segundos'
+    
+s(3)
+s(0.4)
+s(7.2)
+
+# Quanto à função que converte segundos em horas:
+def h(s):
+    h = s/float(3600)
+    print s, 'segundos valem', round(h,3), 'horas'
+    
+h(7200)
+h(1200)
+h(4500)
+
+# Agora vamos resolver o exercício 1 da aula 1 usando as funções acima. 
+# 10 km em milhas:
+x(10*1000)
+
+# 43.5 min em horas: 
+h(43.5*60)
+
+# Logo a velocidade média é:
+def v(d,t):
+    v=d/t
+    print 'a velocidade média é de', v, 'milhas/h'
+    
+# EXERCÍCIO 5
+
+import math
+
+# Função para o exercício 5 da aula 1:
+def IMC(M,H):
+    IMC = M/H**2
+    print 'o IMC é de aproximadamente', round(IMC,2)
+
+# No meu caso: 
+IMC(69,1.79)
+
+# No caso do bebê:
+IMC(11,0.7)
+
+# Função para o exercício 2 da aula 2:
+def V(R):
+    V = (4*math.pi*R**3)/3
+    print 'o volume da esfera é de cerca de', round(V,2)
+    
+V(5)
+
+# Função para o exercício 4 da aula 2:
+
+# Na definição da função, há de se considerar que o comprimento de onda é dado em nanômetros e o espaçamento em milímetros,
+# então para se obter a resposta em metros: 
+def delta_y(lamda,D,d):
+    delta_y = lamda*10**(-9)*D/(d*10**(-3))
+    print 'a distância entre dois máximos consecutivos de interferência é de aproximadamente', round(delta_y,2), 'metros'
+     
+delta_y(632.8,1.98,0.25)
