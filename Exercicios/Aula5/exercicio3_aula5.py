@@ -3,7 +3,7 @@ def produto(lista):
     total = 1
     for i in lista:
         total = total*i
-    print total
+    print(total)
         
 produto([2,8,5,4])
 produto([5,3,2])
