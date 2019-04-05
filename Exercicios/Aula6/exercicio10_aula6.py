@@ -12,3 +12,6 @@ joana = turtle.Turtle()
 
 # Usando-se n = 360 e length = 1, 'polygon' cria um círculo:
 polygon(joana,1,360)
+
+# Para garantir que o programa só acabe quando eu fechar a janela:
+jn.mainloop()  
