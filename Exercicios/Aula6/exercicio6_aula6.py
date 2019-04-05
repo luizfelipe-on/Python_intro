@@ -8,7 +8,8 @@ estrela.pensize(2)
 
 # Para criar 4 estrelas iguais lado a lado separadas por uma pequena distância,
 # pode-se usar um laço 'for' dentro de outro: o interno para criar cada estrela,
-# o externo para fazer com que o processo interno ocorra 4 vezes:
+# o externo para fazer com que o processo interno ocorra 4 vezes, 
+# com as estrelas ficando separadas umas das outras:
 for j in range(4):
     for i in range(5):
         estrela.forward(80)            
