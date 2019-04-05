@@ -12,6 +12,7 @@ def polygon(t,length,n):
     t.forward(150)
     t.pendown()
 
+# Abertura da janela e criação da tartaruga:
 jn = turtle.Screen()
 joana = turtle.Turtle()
 
@@ -21,4 +22,5 @@ polygon(joana,80,3)
 polygon(joana,80,4)
 polygon(joana,80,6)
 
+# Para garantir que o programa só acabe quando eu fechar a janela:
 jn.mainloop()
