@@ -6,6 +6,9 @@ def polygon(t,n,length,angle):
     for i in range(n):
         t.forward(length)
         t.left(angle)
+    t.penup()
+    t.forward(100)
+    t.pendown()
 
 # Definição da função 'arc', que usa 'polygon', para n = 100:
 def arc(t,r,angle):  
@@ -15,15 +18,12 @@ def arc(t,r,angle):
     step_length = arc_length/n
     step_angle = float(angle)/n
     polygon(t,n,step_length,step_angle)
-    t.penup()
-    t.forward(100)
-    t.pendown()
 
 # Abertura da janela e criação da tartaruga: 
 jn = turtle.Screen()
 joana = turtle.Turtle()
 
-# Para obter arcos com r = 40 e ângulos = 90, 180, 270 e 360 graus, respectivamente:
+# Para obter arcos com r = 40 unidades e ângulos = 90, 180, 270 e 360 graus, respectivamente:
 arc(joana,40,90)
 arc(joana,40,180)
 arc(joana,40,270)
