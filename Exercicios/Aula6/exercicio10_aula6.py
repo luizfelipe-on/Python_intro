@@ -18,10 +18,8 @@ def circle(t,r):
 jn = turtle.Screen()
 joana = turtle.Turtle()
 
-# Para obter círculos com r = 40, 70 e 100 unidades, respectivamente:
-circle(joana,40)
-circle(joana,70)
-circle(joana,100)
+# Para obter círculos com r = 80 unidades:
+circle(joana,80)
 
 # Para garantir que o programa só acabe quando eu fechar a janela:
 jn.mainloop()
