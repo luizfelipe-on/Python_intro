@@ -35,3 +35,6 @@ joana = turtle.Turtle()
 
 # Para obter uma flor de oito pétalas composta por arcos de r = 100 unidades:
 arc(joana,100)
+
+# Para garantir que o programa só acabe quando eu fechar a janela:
+jn.mainloop()
