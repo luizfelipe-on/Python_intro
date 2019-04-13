@@ -1,16 +1,19 @@
 import turtle
 
-def draw_bar(t,frequencies,binning):
+# Criação da função 'draw_bar', que desenha barras. Vamos utilizá-la para fazer o histograma:
 
-    """ Get turtle t to draw one bar, of height. """
+def draw_bar(t,frequencies):
+    
+    """ Enquanto 't' é uma turtle, 'frequencies' tem de ser uma lista para funcionar: """
 
     if type(frequencies) == list:
-        print(frequencies,'é uma lista') 
+        print(frequencies,'é uma lista')
+        binning = input('bin desejado: ')
         for height in frequencies:
             t.begin_fill()           
             t.left(90)
             t.forward(height)
-            t.write("  "+ str(height))
+            t.write("  " + str(height))
             t.right(90)
             t.forward(binning)
             t.right(90)
@@ -18,18 +21,22 @@ def draw_bar(t,frequencies,binning):
             t.left(90)
             t.end_fill()     
     else:
-        print('Erro!',frequencies,'não é uma lista')        
+        print('Erro!',frequencies,'não é uma lista')
 
-wn = turtle.Screen()         
-wn.bgcolor("lightgreen")
+# Abrindo a janela e dando a ela uma cor de fundo:
+jn = turtle.Screen()         
+jn.bgcolor("lightgreen")
 
-tess = turtle.Turtle()   
-color1 = input('cor do contorno desejada é: ')    
-color2 = input('cor de preenchimento desejada é: ')    
-tess.color(color1,color2)
-tess.pensize(3)
+# Criando uma tartaruga, estabelecendo suas cores e a largura da caneta:
+joana = turtle.Turtle()   
+color1 = input('cor do contorno desejada: ')    
+color2 = input('cor de preenchimento desejada: ')    
+joana.color(color1,color2)
+joana.pensize(3)
 
-xs = [48,117,200,240,160,260,220]
-draw_bar(tess,xs,50)
+# Solicitação da lista de frequências e execução da função:
+xs = input('lista de frequencias desejada: ')
+draw_bar(joana,xs)
 
-wn.mainloop()
+# Para garantir que o programa só acabe quando eu fechar a janela:
+jn.mainloop()
