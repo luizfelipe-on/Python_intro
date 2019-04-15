@@ -1,9 +1,11 @@
 import turtle
 
 # Criação da função 'draw_bar', que desenha barras, utilizando 'try' e 'except'.
-# Caso o argumento 'frequencies' não seja uma lista, a exceção é acionada.
 
 def draw_bar(t,frequencies):
+    
+    """ Caso o argumento 'frequencies' não seja uma lista, a exceção é acionada. """
+    
     try:
         binning = input('bin desejado: ')
         for height in frequencies:
@@ -32,7 +34,7 @@ joana.color(color1,color2)
 joana.pensize(3)
 
 # Solicitação da lista de frequências e execução da função:
-xs = 220
+xs = [48,117,200,240,160,260,220]
 draw_bar(joana,xs)
 
 # Para garantir que o programa só acabe quando eu fechar a janela:
