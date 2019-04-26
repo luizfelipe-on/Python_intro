@@ -15,5 +15,3 @@ c = int(input('Qual o valor de c desejado? '))
 n = int(input('Qual o valor de n desejado? '))
 
 check_fermat(a,b,c,n)
-
-
