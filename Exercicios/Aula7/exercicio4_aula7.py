@@ -88,12 +88,12 @@ else:
     if 335 <= x7 <= 365:
         print 'data:', x7 - 334, 'de dezembro de', x3
         
-x7 = x6*24 #horas passadas hoje
+x8 = x6*24 #horas passadas hoje
 
-x8 = x7 - int(x7) #fração da hora em andamento
-x9 = x8*60 #minutos passados da hora int(x7)
+x9 = x8 - int(x8) #fração da hora em andamento
+x10 = x9*60 #minutos passados da hora int(x7)
 
-x10 = x9 - int(x9) #fração do minuto em andamento
-x11 = x10*60 #segundos passados do minuto int(x9)
+x11 = x10 - int(x10) #fração do minuto em andamento
+x12 = x11*60 #segundos passados do minuto int(x9)
 
-print 'hora:', int(x7), 'horas,', int(x9), 'minutos e', int(x11), 'segundos'
+print 'hora:', int(x8), 'horas,', int(x10), 'minutos e', int(x12), 'segundos'
