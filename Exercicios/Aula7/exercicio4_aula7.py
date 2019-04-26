@@ -96,4 +96,4 @@ x10 = x9*60 #minutos passados da hora int(x7)
 x11 = x10 - int(x10) #fração do minuto em andamento
 x12 = x11*60 #segundos passados do minuto int(x9)
 
-print('hora:', int(x8), 'horas,', int(x10), 'minutos e', int(x12), 'segundos')
+print('horário:', int(x8), 'horas,', int(x10), 'minutos e', int(x12), 'segundos')
