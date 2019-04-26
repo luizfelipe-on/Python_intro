@@ -18,4 +18,3 @@ jn = turtle.Screen()
 draw(joana,10,5)
 
 jn.mainloop()
-
