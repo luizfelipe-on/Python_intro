@@ -14,4 +14,4 @@ class Ponto:
 
 p = Ponto(4,10)
 inc = p.inclinacao_origem()
-print('a inclinação da linha em relação à origem é',inc)
+print('a inclinação da linha que une o ponto à origem é',inc)
