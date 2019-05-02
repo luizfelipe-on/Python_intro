@@ -27,4 +27,3 @@ def delta_y(lamda,D,d):
     print('a distância entre dois máximos consecutivos de interferência é de aproximadamente', round(delta_y,2), 'metros')
      
 delta_y(632.8,1.98,0.25)
-
