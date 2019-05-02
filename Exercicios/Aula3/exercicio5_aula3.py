@@ -3,7 +3,7 @@ import math
 # Função para o exercício 5 da aula 1:
 def IMC(M,H):
     IMC = M/H**2
-    print('o IMC é de aproximadamente', round(IMC,2))
+    print('o IMC de uma pessoa com massa', M, '(Kg) e altura', H, '(m) é de aproximadamente', round(IMC,2))
 
 # No meu caso: 
 IMC(69,1.79)
