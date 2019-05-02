@@ -50,4 +50,3 @@ vmed = v(m(4)*10**(-3),h(30*60))
 
 # Então:
 print('a velocidade média é de aproximadamente', round(vmed,3), 'km/h')
-
