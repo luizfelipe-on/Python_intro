@@ -44,6 +44,7 @@ if ajuste == 1:
     h = float(input('Valor inicial da altura máxima h: '))
     Mo = float(input('Valor inicial da massa invariante Mo: '))
     sigma = float(input('Valor inicial do desvio padrão sigma: '))
+    print('Dica: Em uma distribuição gaussiana, sigma ~ FWHM/2.')
     print("")
     initials = [h, Mo, sigma]
 
@@ -136,4 +137,4 @@ if ajuste == 2:
     plt.ylabel('Number of events')
     plt.title('The Breit-Wigner fit \n')
     plt.legend()
-    plt.show()
+plt.show()
