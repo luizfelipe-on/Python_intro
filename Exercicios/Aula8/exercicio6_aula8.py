@@ -18,7 +18,7 @@ class Circulo:
         self.centro = centro
         
     def area(self):                                    
-        """Retorna a área do círculo"""
+        """ Retorna a área do círculo """
         a = math.pi*((self.raio)**2)
         return a
     
@@ -42,4 +42,3 @@ q = Ponto(35,70)
 # Verificando se os pontos p, q estão dentro do círculo:
 print('Ponto', str(p), 'pertence ao círculo', str(circ), '?', circ.ponto_circulo(p))
 print('Ponto', str(q), 'pertence ao círculo', str(circ), '?', circ.ponto_circulo(q))
-
