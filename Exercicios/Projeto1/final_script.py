@@ -10,15 +10,15 @@ ds = pd.read_csv('DoubleMuRun2011A.csv')
 invariant_mass = np.sqrt(2*ds.pt1*ds.pt2*(np.cosh(ds.eta1-ds.eta2)-np.cos(ds.phi1-ds.phi2)))
 
 # Defining whick peak will be adjusted:
-ajuste = int(input('Qual pico você quer ajustar? Digite 1 para gamma ou 2 para bóson Z '))
+ajuste = int(input('Qual pico você quer ajustar? Digite 1 para upsilon ou 2 para bóson Z '))
 
-# If the peak of gamma was chosen, the following histogram can be plotted:
+# If the peak of upsilon was chosen, the following histogram can be plotted:
 if ajuste == 1:
-    print('O histograma abaixo revela o pico de gamma:')
+    print('Histograma abaixo revela o pico de upsilon:')
     lowerlimit = 9.25 
     upperlimit = 9.65
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
-    histogram = plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
+    plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Gaussian fit \n')
@@ -26,6 +26,7 @@ if ajuste == 1:
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
 # In x-axis, the centers of the bins.
+    histogram = plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
     # print('center of the bins =', x)
@@ -74,11 +75,11 @@ if ajuste == 1:
 
 # If the peak of the boson Z was chosen, the following histogram can be plotted:
 if ajuste == 2:
-    print('O histograma abaixo revela o pico do bóson Z:')
+    print('Histograma abaixo revela o pico do bóson Z:')
     lowerlimit = 70
     upperlimit = 110
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
-    histogram = plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
+    plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Breit-Wigner fit \n')
@@ -86,6 +87,7 @@ if ajuste == 2:
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
 # In x-axis, the centers of the bins.
+    histogram = plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
     # print('center of the bins =', x)
