@@ -38,13 +38,13 @@ if ajuste == 1:
     print('Uma curva Gaussiana ajusta bem este histograma caso o usuário entre com valores adequados de h, Mo e sigma.')
     print('h representa um chute inicial da altura do pico da distribuição.')
     print('Mo representa um chute inicial da massa invariante correspondente a esta altura.')
-    print ('sigma representa um chute inicial do desvio padrão da distribuição. \n') 
+    print ('sigma representa um chute inicial do desvio padrão da distribuição.')
+    print('Dica: Em uma distribuição gaussiana, sigma ~ FWHM/2. \n')
           
 # Initial values for the optimization in the following order:
     h = float(input('Valor inicial da altura máxima h: '))
     Mo = float(input('Valor inicial da massa invariante Mo: '))
     sigma = float(input('Valor inicial do desvio padrão sigma: '))
-    print('Dica: Em uma distribuição gaussiana, sigma ~ FWHM/2.')
     print("")
     initials = [h, Mo, sigma]
 
