@@ -17,7 +17,6 @@ class Circulo:
         self.raio = raio
         self.centro = centro
 
-    
     def ponto_circulo(self, p = Ponto()):
         d = ((p.x - self.centro.x)**2 + (p.y - self.centro.y)**2) ** 0.5
         if d <= self.raio:
@@ -38,4 +37,3 @@ q = Ponto(35,70)
 # Verificando se os pontos p, q estão dentro do círculo:
 print('Ponto', str(p), 'pertence ao círculo', str(circ), '?', circ.ponto_circulo(p))
 print('Ponto', str(q), 'pertence ao círculo', str(circ), '?', circ.ponto_circulo(q))
-
