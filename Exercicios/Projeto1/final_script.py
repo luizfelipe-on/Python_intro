@@ -21,7 +21,7 @@ if ajuste == 1:
     plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
-    plt.title('The Gaussian fit \n')
+    plt.title('Upsilon peak histogram \n')
     plt.show()
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
@@ -29,23 +29,21 @@ if ajuste == 1:
     histogram = plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
-    # print('center of the bins =', x)
-    # print('number of events per bin =', y)
 
 # Defining a function that describes Gauss distribution for the fit:
     def gauss_function(M, h, Mo, sigma):
         return h*np.exp(-(M-Mo)**2/(2*sigma**2))
     
     print('Uma curva Gaussiana ajusta bem este histograma caso o usuário entre com valores adequados de h, Mo e sigma.')
-    print('h representa um chute inicial da altura do pico da distribuição.')
-    print('Mo representa um chute inicial da massa invariante correspondente a esta altura.')
-    print ('sigma representa um chute inicial do desvio padrão da distribuição.')
+    print('h representa uma suposição inicial da altura do pico da distribuição;')
+    print('Mo representa uma suposição inicial da massa invariante correspondente a esta altura;')
+    print ('sigma representa uma suposição inicial do desvio padrão da distribuição.')
     print('Dica: Em uma distribuição gaussiana, sigma ~ FWHM/2. \n')
           
 # Initial values for the optimization in the following order:
-    h = float(input('Valor inicial da altura máxima h: '))
-    Mo = float(input('Valor inicial da massa invariante Mo: '))
-    sigma = float(input('Valor inicial do desvio padrão sigma: '))
+    h = float(input('Valor inicial da altura máxima (h): '))
+    Mo = float(input('Valor inicial da massa invariante (Mo): '))
+    sigma = float(input('Valor inicial do desvio padrão (sigma): '))
     print("")
     initials = [h, Mo, sigma]
 
@@ -82,7 +80,7 @@ if ajuste == 2:
     plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
-    plt.title('The Breit-Wigner fit \n')
+    plt.title('Boson Z peak histogram \n')
     plt.show()
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
@@ -90,26 +88,24 @@ if ajuste == 2:
     histogram = plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
-    # print('center of the bins =', x)
-    # print('number of events per bin =', y)
 
 # Defining a function that describes the Breit-Wigner distribution for the fit:
     def breitwigner(M, FWHM, Mo, a, b, A):
         return a*M+b+A*((2*np.sqrt(2)*Mo*FWHM*np.sqrt(Mo**2*(Mo**2+FWHM**2)))/(np.pi*np.sqrt(Mo**2+np.sqrt(Mo**2*(Mo**2+FWHM**2)))) )/((M**2-Mo**2)**2+Mo**2*FWHM**2)
 
     print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A.')
-    print('FWHM representa um chute inicial da largura à meia-altura.')
-    print('Mo representa um chute inicial da massa invariante correspondente a esta FWHM.')
-    print('a representa um chute inicial da inclinação usada para notar o efeito de background.')
-    print('b representa um chute inicial da intersecção em y usada para notar o efeito de background.')
-    print('A representa um chute inicial da altura da distribuição Breit-Wigner. \n')
+    print('FWHM representa uma suposição inicial da largura à meia-altura;')
+    print('Mo representa uma suposição inicial da massa invariante correspondente a esta FWHM;')
+    print('a representa uma suposição inicial da inclinação usada para notar o efeito de background;')
+    print('b representa uma suposição inicial da intersecção em y usada para notar o efeito de background;')
+    print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
-    FWHM = float(input('Valor inicial da largura à meia-altura FWHM: '))
-    Mo = float(input('Valor inicial da massa invariante Mo: '))
-    a = float(input('Valor inicial da inclinação usada para notar o efeito de background a: '))
-    b = float(input('Valor inicial da intersecção em y usada para notar o efeito de background b: '))
-    A = float(input('Valor inicial da altura da distribuição Breit-Wigner A: '))
+    FWHM = float(input('Valor inicial da largura à meia-altura (FWHM): '))
+    Mo = float(input('Valor inicial da massa invariante (Mo): '))
+    a = float(input('Valor inicial da inclinação usada para notar o efeito de background (a): '))
+    b = float(input('Valor inicial da intersecção em y usada para notar o efeito de background (b): '))
+    A = float(input('Valor inicial da altura da distribuição Breit-Wigner (A): '))
     print("")
     initials = [FWHM, Mo, a, b, A]
 
@@ -123,9 +119,9 @@ if ajuste == 2:
     print("Valores e Incertezas da Optimização:")
     first = "Valor optimizado da largura à meia-altura (FWHM) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
-    third = "Valor optimizado de a = {} +- {}".format(best[2], error[2])
-    fourth = "Valor optimizado de b = {} +- {}".format(best[3], error[3])
-    fifth = "Valor optimizado de A = {} +- {}".format(best[4], error[4])
+    third = "Valor optimizado da inclinação (a) = {} +- {}".format(best[2], error[2])
+    fourth = "Valor optimizado da intersecção em y (b) = {} +- {}".format(best[3], error[3])
+    fifth = "Valor optimizado da altura da distribuição (A) = {} +- {}".format(best[4], error[4])
     print(first)
     print(second)
     print(third)
