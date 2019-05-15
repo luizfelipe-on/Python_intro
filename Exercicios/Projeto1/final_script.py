@@ -64,7 +64,7 @@ if ajuste == 1:
         
 # Plotting the histogram with the Gaussian adjust:
     plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
-    plt.plot(x, gauss_function(x, *best), 'r-', label='h = {}, Mo = {}'.format(best[0], best[1]))
+    plt.plot(x, gauss_function(x, *best), 'b-', label='h = {}, Mo = {}'.format(best[0], best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Gaussian fit \n')
@@ -130,7 +130,7 @@ if ajuste == 2:
 
 # Plotting the histogram with the Breit-Wigner adjust:
     plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
-    plt.plot(x, breitwigner(x, *best), 'r-', label='FWHM = {}, Mo = {}'.format(best[0], best[1]))
+    plt.plot(x, breitwigner(x, *best), 'b-', label='FWHM = {}, Mo = {}'.format(best[0], best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Breit-Wigner fit \n')
