@@ -38,7 +38,7 @@ if ajuste == 1:
     print('h representa uma suposição inicial da altura do pico da distribuição;')
     print('Mo representa uma suposição inicial da massa invariante correspondente a esta altura;')
     print ('sigma representa uma suposição inicial do desvio padrão da distribuição.')
-    print('Dica: Em uma distribuição gaussiana, sigma ~ FWHM/2. \n')
+    print('DICA: Em uma distribuição gaussiana, o desvio padrão vale aproximadamente metade da largura à meia-altura. \n')
           
 # Initial values for the optimization in the following order:
     h = float(input('Valor inicial da altura máxima (h): '))
@@ -64,7 +64,7 @@ if ajuste == 1:
         
 # Plotting the histogram with the Gaussian adjust:
     plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
-    plt.plot(x, gauss_function(x, *best), 'b-', label='h = {}, Mo = {}'.format(best[0], best[1]))
+    plt.plot(x, gauss_function(x, *best), 'b-', label='Mo = {}'.format(best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Gaussian fit \n')
@@ -130,7 +130,7 @@ if ajuste == 2:
 
 # Plotting the histogram with the Breit-Wigner adjust:
     plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
-    plt.plot(x, breitwigner(x, *best), 'b-', label='FWHM = {}, Mo = {}'.format(best[0], best[1]))
+    plt.plot(x, breitwigner(x, *best), 'b-', label='Mo = {}'.format(best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Breit-Wigner fit \n')
