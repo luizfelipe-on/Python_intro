@@ -81,3 +81,24 @@ if ajuste == 1:
         plt.title('The Breit-Wigner fit \n')
         plt.legend()
         plt.show()
+        
+# M = 5.
+# FWHM = 1.
+# Mo = 2.
+# a = 3.
+# b = 4.
+# A = 5.
+
+# inicio = [FWHM,Mo,a,b,A]
+# for i in range(1):
+#     bw = breitwigner(M,FWHM,Mo,a,b,A) 
+#     best, covariance = curve_fit(bw, x, y, p=inicio, sigma=np.sqrt(y))
+#     error = np.sqrt(np.diag(covariance))
+    
+#     FWHM = best[0]
+#     Mo = best[1]
+#     a = best[2]
+#     b = best[3]
+#     A = best[4]
+    
+# print(inicio)
