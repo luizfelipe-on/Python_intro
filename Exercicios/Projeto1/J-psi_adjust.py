@@ -1,8 +1,8 @@
-import math
-
 # Importing the modules:
-import pandas as pd
+import math
 import numpy as np
+import pandas as pd
+from scipy import special
 import matplotlib.pyplot as plt
 
 # Importing the datafile and saving it in the variable 'ds':
@@ -31,9 +31,9 @@ x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
 # Defining a function that describes Crystalball distribution for the fit:
 def crystalball_function(M, alpha, n, Mo, sigma):
     if (M-Mo)/sigma > -alpha: 
-        return sigma*(n*exp(-(alpha**2)/2)/(abs(alpha)*(n-1)) + math.sqrt(math.pi/2)*()) ..... ** (-1)
-    if (M-Mo)/sigma <= -alpha:
-        return
+        return sigma*(((n*exp(-(alpha**2)/2))/(abs(alpha)*(n-1))) + math.sqrt(math.pi/2)*(1+erf(abs(alpha)/math.sqrt(2))))**(-1) * np.exp(-(M-Mo)**2/(2*sigma**2))
+    if (M-Mo)/sigma <= -alpha:    
+        return sigma*(((n*exp(-(alpha**2)/2))/(abs(alpha)*(n-1))) + math.sqrt(math.pi/2)*(1+erf(abs(alpha)/math.sqrt(2))))**(-1) * ((n/abs(alpha))-abs(alpha)-((M-Mo)/sigma))**(-n) * (n/abs(alpha))**(n) * exp(-(alpha**2)/2)
           
 # Initial values for the optimization in the following order:
 alpha = float(input('alpha: '))
