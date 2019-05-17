@@ -44,6 +44,7 @@ if ajuste == 1:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
+    print("Valores Iniciais:")
     FWHM = float(input('Valor inicial da largura à meia-altura (FWHM): '))
     Mo = float(input('Valor inicial da massa invariante (Mo): '))
     a = float(input('Valor inicial da inclinação usada para notar o efeito de background (a): '))
@@ -120,6 +121,7 @@ if ajuste == 2:
     print('DICA: Em uma distribuição gaussiana, o desvio padrão vale aproximadamente metade da largura à meia-altura. \n')
           
 # Initial values for the optimization in the following order:
+    print("Valores Iniciais:")
     h = float(input('Valor inicial da altura máxima (h): '))
     Mo = float(input('Valor inicial da massa invariante (Mo): '))
     sigma = float(input('Valor inicial do desvio padrão (sigma): '))
@@ -189,6 +191,7 @@ if ajuste == 3:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
+    print("Valores Iniciais:")
     FWHM = float(input('Valor inicial da largura à meia-altura (FWHM): '))
     Mo = float(input('Valor inicial da massa invariante (Mo): '))
     a = float(input('Valor inicial da inclinação usada para notar o efeito de background (a): '))
