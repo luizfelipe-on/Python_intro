@@ -91,6 +91,18 @@ if ajuste == 1:
     plt.title('The Breit-Wigner fit \n')
     plt.legend()
     plt.show()
+    
+# Determining if the invariant mass obtained in the adjust is compatible with the 
+# one that can be found in the literature:
+    M_reference = 3.0969
+    print('De acordo com a literatura, a massa de J/psi é:', M_reference)
+    M_adjusted = best[1]
+    uncertainty = error[1]
+    
+    if abs(M_adjusted-M_reference) <= 2*uncertainty:
+        print('A massa que obtivemos, de', M_adjusted, ', é compatível com a da literatura, de', M_reference)
+    else:
+        print('A massa que obtivemos, de', M_adjusted, ', NÃO é compatível com a da literatura, de', M_reference)
 
 # If the peak of upsilon was chosen, the following histogram can be plotted:
 if ajuste == 2:
@@ -160,6 +172,18 @@ if ajuste == 2:
     plt.title('The Gaussian fit \n')
     plt.legend()
     plt.show()
+    
+# Determining if the invariant mass obtained in the adjust is compatible with the 
+# one that can be found in the literature:
+    M_reference = 9.4603026
+    print('De acordo com a literatura, a massa de upsilon é:', M_reference)
+    M_adjusted = best[1]
+    uncertainty = error[1]
+    
+    if abs(M_adjusted-M_reference) <= 2*uncertainty:
+        print('A massa que obtivemos, de', M_adjusted, ', é compatível com a da literatura, de', M_reference)
+    else:
+        print('A massa que obtivemos, de', M_adjusted, ', NÃO é compatível com a da literatura, de', M_reference)
 
 # If the peak of the boson Z was chosen, the following histogram can be plotted:
 if ajuste == 3:
@@ -238,3 +262,15 @@ if ajuste == 3:
     plt.title('The Breit-Wigner fit \n')
     plt.legend()
     plt.show()
+    
+# Determining if the invariant mass obtained in the adjust is compatible with the 
+# one that can be found in the literature:
+    M_reference = 91.187621
+    print('De acordo com a literatura, a massa do bóson é:', M_reference)
+    M_adjusted = best[1]
+    uncertainty = error[1]
+    
+    if abs(M_adjusted-M_reference) <= 2*uncertainty:
+        print('A massa que obtivemos, de', M_adjusted, ', é compatível com a da literatura, de', M_reference)
+    else:
+        print('A massa que obtivemos, de', M_adjusted, ', NÃO é compatível com a da literatura, de', M_reference)
