@@ -52,13 +52,24 @@ if ajuste == 1:
     print("")
     initials = [FWHM, Mo, a, b, A]
 
-# Import the module used in the optimization, running the optimization
+# Importing the module used in the optimization, running the optimization
 # and calculating the uncertainties of the optimized parameters:
     from scipy.optimize import curve_fit
     best, covariance = curve_fit(breitwigner, x, y, p0=initials, sigma=np.sqrt(y))
     error = np.sqrt(np.diag(covariance))
+    
+# Taking the new parameters and optimizing them even more, until they can not be optimized anymore:
+    while abs(Mo-best[1]) != 0:
+        FWHM = best[0]
+        Mo = best[1]
+        a = best[2]
+        b = best[3]
+        A = best[4]
+        initials = [FWHM, Mo, a, b, A]
+        best, covariance = curve_fit(breitwigner, x, y, p0=initials, sigma=np.sqrt(y))
+        error = np.sqrt(np.diag(covariance))
 
-# Printing the values and uncertainties gotten from the optimization:
+# Printing the best values and uncertainties gotten from the optimization:
     print("Valores e Incertezas da Optimização:")
     first = "Valor optimizado da largura à meia-altura (FWHM) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
@@ -70,7 +81,7 @@ if ajuste == 1:
     print(third)
     print(fourth)
     print(fifth)
-
+        
 # Plotting the histogram with the Breit-Wigner adjust:
     plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     plt.plot(x, breitwigner(x, *best), 'b-', label='Mo = {}'.format(best[1]))
@@ -118,10 +129,19 @@ if ajuste == 2:
 # Importing the module that is used in the optimization, running the optimization
 # and calculating the uncertainties of the optimized parameters:
     from scipy.optimize import curve_fit
-    best, covariance = curve_fit(gauss_function, x, y, p0=initials)
+    best, covariance = curve_fit(gauss_function, x, y, p0=initials, sigma=np.sqrt(y))
     error = np.sqrt(np.diag(covariance))
-
-# Printing the values and uncertainties gotten from the optimization:
+    
+# Taking the new parameters and optimizing them even more, until they can not be optimized anymore:
+    while abs(Mo-best[1]) != 0:
+        h = best[0]
+        Mo = best[1]
+        sigma = best[2]
+        initials = [h, Mo, sigma]
+        best, covariance = curve_fit(gauss_function, x, y, p0=initials, sigma=np.sqrt(y))
+        error = np.sqrt(np.diag(covariance))
+    
+# Printing the best values and uncertainties gotten from the optimization:
     print("Valores e Incertezas da Optimização:")
     first = "Valor optimizado da altura máxima (h) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
@@ -177,13 +197,24 @@ if ajuste == 3:
     print("")
     initials = [FWHM, Mo, a, b, A]
 
-# Import the module used in the optimization, running the optimization
+# Importing the module used in the optimization, running the optimization
 # and calculating the uncertainties of the optimized parameters:
     from scipy.optimize import curve_fit
     best, covariance = curve_fit(breitwigner, x, y, p0=initials, sigma=np.sqrt(y))
     error = np.sqrt(np.diag(covariance))
+    
+# Taking the new parameters and optimizing them even more, until they can not be optimized anymore:
+    while abs(Mo-best[1]) != 0:
+        FWHM = best[0]
+        Mo = best[1]
+        a = best[2]
+        b = best[3]
+        A = best[4]
+        initials = [FWHM, Mo, a, b, A]
+        best, covariance = curve_fit(breitwigner, x, y, p0=initials, sigma=np.sqrt(y))
+        error = np.sqrt(np.diag(covariance))
 
-# Printing the values and uncertainties gotten from the optimization:
+# Printing the best values and uncertainties gotten from the optimization:
     print("Valores e Incertezas da Optimização:")
     first = "Valor optimizado da largura à meia-altura (FWHM) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
@@ -195,7 +226,7 @@ if ajuste == 3:
     print(third)
     print(fourth)
     print(fifth)
-
+        
 # Plotting the histogram with the Breit-Wigner adjust:
     plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     plt.plot(x, breitwigner(x, *best), 'b-', label='Mo = {}'.format(best[1]))
