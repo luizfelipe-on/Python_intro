@@ -6,19 +6,19 @@ from astropy.table import Table
 import math
 
 # Importando a tabela com dados das estrelas de tipo F, classe V e 3 < mag aparente < 10 do catálogo de Gliese et al. (2011):
-table1 = np.loadtxt('Table.txt',dtype={'names':('spectral_type','magnitude_apparent','farbe','paralax'),
+table1 = np.loadtxt('Table.txt',dtype={'names':('spectral_type','magnitude_apparent','farbe','parallax'),
                                        'formats':('S10','f8','f8','f8')}, unpack=True, delimiter=';')
 
 spectral_type = table1[0]
 magnitude_apparent = table1[1]
 farbe = table1[2]
-paralax = table1[3]
+parallax = table1[3]
 
 # Calculando distância e magnitude absoluta destas estrelas:
 mag_abs = []
 for i in range(0,len(farbe)):
     mag_ap = magnitude_apparent[i]
-    plx = paralax[i]
+    plx = parallax[i]
     distance = float(1000)/plx
     mag_abs.append(mag_ap-5*math.log10(distance)+5)
 
