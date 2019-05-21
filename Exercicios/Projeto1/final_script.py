@@ -45,12 +45,12 @@ if ajuste == 1:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
-    print("Valores Iniciais:")
-    FWHM = float(input('Valor inicial da largura à meia-altura (FWHM): '))
-    Mo = float(input('Valor inicial da massa invariante (Mo): '))
-    a = float(input('Valor inicial da inclinação usada para notar o efeito de background (a): '))
-    b = float(input('Valor inicial da intersecção em y usada para notar o efeito de background (b): '))
-    A = float(input('Valor inicial da altura da distribuição Breit-Wigner (A): '))
+    print("Suposições Iniciais:")
+    FWHM = float(input('Suposição Inicial da largura à meia-altura (FWHM): '))
+    Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
+    a = float(input('Suposição Inicial da inclinação usada para notar o efeito de background (a): '))
+    b = float(input('Suposição Inicial da intersecção em y usada para notar o efeito de background (b): '))
+    A = float(input('Suposição Inicial da altura da distribuição Breit-Wigner (A): '))
     print("")
     initials = [FWHM, Mo, a, b, A]
 
@@ -154,10 +154,10 @@ if ajuste == 2:
     print('DICA: Em uma distribuição gaussiana, o desvio padrão vale aproximadamente metade da largura à meia-altura. \n')
           
 # Initial values for the optimization in the following order:
-    print("Valores Iniciais:")
-    h = float(input('Valor inicial da altura máxima (h): '))
-    Mo = float(input('Valor inicial da massa invariante (Mo): '))
-    sigma = float(input('Valor inicial do desvio padrão (sigma): '))
+    print("Suposições Iniciais:")
+    h = float(input('Suposição Inicial da altura máxima (h): '))
+    Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
+    sigma = float(input('Suposição Inicial do desvio padrão (sigma): '))
     print("")
     initials = [h, Mo, sigma]
 
@@ -256,12 +256,12 @@ if ajuste == 3:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
-    print("Valores Iniciais:")
-    FWHM = float(input('Valor inicial da largura à meia-altura (FWHM): '))
-    Mo = float(input('Valor inicial da massa invariante (Mo): '))
-    a = float(input('Valor inicial da inclinação usada para notar o efeito de background (a): '))
-    b = float(input('Valor inicial da intersecção em y usada para notar o efeito de background (b): '))
-    A = float(input('Valor inicial da altura da distribuição Breit-Wigner (A): '))
+    print("Suposições Iniciais:")
+    FWHM = float(input('Suposição Inicial da largura à meia-altura (FWHM): '))
+    Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
+    a = float(input('Suposição Inicial da inclinação usada para notar o efeito de background (a): '))
+    b = float(input('Suposição Inicial da intersecção em y usada para notar o efeito de background (b): '))
+    A = float(input('Suposição Inicial da altura da distribuição Breit-Wigner (A): '))
     print("")
     initials = [FWHM, Mo, a, b, A]
 
@@ -306,13 +306,12 @@ if ajuste == 3:
     
 # Determining if the invariant mass obtained in the adjust is compatible with the 
 # one that can be found in the literature:
+    print('Compatibilidade entre a massa obtida pelo ajuste e a massa fornecida pela literatura:')
     M_reference = 91.187621
-    print('De acordo com a literatura, a massa do bóson é:', M_reference, 'GeV')
-    print("")
+    print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV')
     print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
-    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos, então HÁ compatibilidade.')
-    print('Caso o módulo dessa diferença for maior do que o dobro do erro da massa que determinamos, então NÃO há compatibilidade.')
-    print("")
+    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos,')
+    print('então HÁ compatibilidade. Do contrário, NÃO há compatibilidade.')
     M_adjusted = best[1]
     uncertainty = error[1]
     
@@ -322,6 +321,9 @@ if ajuste == 3:
         print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
         
 # Applying the chi-square statistic test to verify the quality of the fit: 
+    print("")
+    print("Teste do chi-quadrado para avaliar a qualidade do ajuste:")
+    
     z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
     
     for i in range(bars - 1):
@@ -330,8 +332,12 @@ if ajuste == 3:
         z.append(l)
     
     divergencia, valorp = chisquare(f_obs = y, f_exp = z)
+    
+    print("Neste caso, o valor encontrado foi de ~", round(divergencia,3))
+    print("Só que este valor ainda precisa ser normalizado, i.e, dividido pelo número de g.l.")
+    print("O número de g.l. é a diferença entre o número de bins e o número de parâmetros da função.")
+    
+    num_param = len(initials)
+    norm_divergencia = divergencia/(bars-num_param)
 
-    print("")
-    print("É possível avaliar a qualidade do ajuste executado a partir do teste do chi-quadrado.")
-    print("Após realizar este teste, quanto menor o valor obtido, maior a qualidade do ajuste.")
-    print("Neste caso, o valor encontrado foi de aproximadamente:", round(divergencia,3))
+    print("O chi-quadrado normalizado neste caso foi de ~", round(norm_divergencia,3))
