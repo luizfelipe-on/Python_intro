@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 from scipy import special
 import matplotlib.pyplot as plt
+from scipy.stats import chisquare
 
 # Importing the datafile and saving it in the variable 'ds':
 ds = pd.read_csv('DoubleMuRun2011A.csv')
@@ -19,8 +20,9 @@ if ajuste == 1:
     print('Histograma abaixo revela o pico de J/psi:')
     lowerlimit = 2.8 
     upperlimit = 3.4
+    bars = 100
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
-    plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
+    histogram = plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('J/psi peak histogram \n')
@@ -28,7 +30,6 @@ if ajuste == 1:
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
 # In x-axis, the centers of the bins.
-    histogram = plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
 
@@ -84,8 +85,8 @@ if ajuste == 1:
     print(fifth)
         
 # Plotting the histogram with the Breit-Wigner adjust:
-    plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
-    plt.plot(x, breitwigner(x, *best), 'b-', label='Mo = {}'.format(best[1]))
+    plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
+    plt.plot(x, breitwigner(x, *best), 'r-', label='Mo = {}'.format(best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Breit-Wigner fit \n')
@@ -95,22 +96,43 @@ if ajuste == 1:
 # Determining if the invariant mass obtained in the adjust is compatible with the 
 # one that can be found in the literature:
     M_reference = 3.0969
-    print('De acordo com a literatura, a massa de J/psi é:', M_reference)
+    print('De acordo com a literatura, a massa de J/psi é:', M_reference, 'GeV')
+    print("")
+    print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
+    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos, então HÁ compatibilidade.')
+    print('Caso o módulo dessa diferença for maior do que o dobro do erro da massa que determinamos, então NÃO há compatibilidade.')
+    print("")
     M_adjusted = best[1]
     uncertainty = error[1]
     
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('A massa que obtivemos, de', M_adjusted, ', é compatível com a da literatura, de', M_reference)
+        print('A massa de', M_adjusted, 'GeV que obtivemos É compatível com a da literatura')
     else:
-        print('A massa que obtivemos, de', M_adjusted, ', NÃO é compatível com a da literatura, de', M_reference)
+        print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
+        
+# Applying the chi-square statistic test to verify the quality of the fit: 
+    z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
+    
+    for i in range(bars - 1):
+        k = lowerlimit + i*(upperlimit - lowerlimit)/bars
+        l = breitwigner(k, best[0], best[1], best[2], best[3], best[4])
+        z.append(l)
+    
+    divergencia, valorp = chisquare(f_obs = y, f_exp = z)
+
+    print("")
+    print("É possível avaliar a qualidade do ajuste executado a partir do teste do chi-quadrado.")
+    print("Após realizar este teste, quanto menor o valor obtido, maior a qualidade do ajuste.")
+    print("Neste caso, o valor encontrado foi de aproximadamente:", round(divergencia,3))
 
 # If the peak of upsilon was chosen, the following histogram can be plotted:
 if ajuste == 2:
     print('Histograma abaixo revela o pico de upsilon:')
     lowerlimit = 9.25 
     upperlimit = 9.65
+    bars = 300
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
-    plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
+    histogram = plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('Upsilon peak histogram \n')
@@ -118,7 +140,6 @@ if ajuste == 2:
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
 # In x-axis, the centers of the bins.
-    histogram = plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
 
@@ -165,8 +186,8 @@ if ajuste == 2:
     print(third)
         
 # Plotting the histogram with the Gaussian adjust:
-    plt.hist(limitedmasses, bins=300, range=(lowerlimit,upperlimit))
-    plt.plot(x, gauss_function(x, *best), 'b-', label='Mo = {}'.format(best[1]))
+    plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
+    plt.plot(x, gauss_function(x, *best), 'r-', label='Mo = {}'.format(best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Gaussian fit \n')
@@ -176,22 +197,43 @@ if ajuste == 2:
 # Determining if the invariant mass obtained in the adjust is compatible with the 
 # one that can be found in the literature:
     M_reference = 9.4603026
-    print('De acordo com a literatura, a massa de upsilon é:', M_reference)
+    print('De acordo com a literatura, a massa de upsilon é:', M_reference, 'GeV')
+    print("")
+    print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
+    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos, então HÁ compatibilidade.')
+    print('Caso o módulo dessa diferença for maior do que o dobro do erro da massa que determinamos, então NÃO há compatibilidade.')
+    print("")
     M_adjusted = best[1]
     uncertainty = error[1]
     
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('A massa que obtivemos, de', M_adjusted, ', é compatível com a da literatura, de', M_reference)
+        print('A massa de', M_adjusted, 'GeV que obtivemos É compatível com a da literatura')
     else:
-        print('A massa que obtivemos, de', M_adjusted, ', NÃO é compatível com a da literatura, de', M_reference)
+        print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
+        
+# Applying the chi-square statistic test to verify the quality of the fit: 
+    z = [gauss_function(lowerlimit, best[0], best[1], best[2])]
+    
+    for i in range(bars - 1):
+        k = lowerlimit + i*(upperlimit - lowerlimit)/bars
+        l = gauss_function(k, best[0], best[1], best[2])
+        z.append(l)
+    
+    divergencia, valorp = chisquare(f_obs = y, f_exp = z)
+
+    print("")
+    print("É possível avaliar a qualidade do ajuste executado a partir do teste do chi-quadrado.")
+    print("Após realizar este teste, quanto menor o valor obtido, maior a qualidade do ajuste.")
+    print("Neste caso, o valor encontrado foi de aproximadamente:", round(divergencia,3))
 
 # If the peak of the boson Z was chosen, the following histogram can be plotted:
 if ajuste == 3:
     print('Histograma abaixo revela o pico do bóson Z:')
     lowerlimit = 70
     upperlimit = 110
+    bars = 100
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
-    plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
+    histogram = plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('Boson Z peak histogram \n')
@@ -199,7 +241,6 @@ if ajuste == 3:
 
 # In y-axis, the number of events per bin, which can be got from the variable 'histogram'.
 # In x-axis, the centers of the bins.
-    histogram = plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
     y = histogram[0]
     x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
 
@@ -255,8 +296,8 @@ if ajuste == 3:
     print(fifth)
         
 # Plotting the histogram with the Breit-Wigner adjust:
-    plt.hist(limitedmasses, bins=100, range=(lowerlimit,upperlimit))
-    plt.plot(x, breitwigner(x, *best), 'b-', label='Mo = {}'.format(best[1]))
+    plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
+    plt.plot(x, breitwigner(x, *best), 'r-', label='Mo = {}'.format(best[1]))
     plt.xlabel('Invariant mass [GeV]')
     plt.ylabel('Number of events')
     plt.title('The Breit-Wigner fit \n')
@@ -266,11 +307,31 @@ if ajuste == 3:
 # Determining if the invariant mass obtained in the adjust is compatible with the 
 # one that can be found in the literature:
     M_reference = 91.187621
-    print('De acordo com a literatura, a massa do bóson é:', M_reference)
+    print('De acordo com a literatura, a massa do bóson é:', M_reference, 'GeV')
+    print("")
+    print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
+    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos, então HÁ compatibilidade.')
+    print('Caso o módulo dessa diferença for maior do que o dobro do erro da massa que determinamos, então NÃO há compatibilidade.')
+    print("")
     M_adjusted = best[1]
     uncertainty = error[1]
     
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('A massa que obtivemos, de', M_adjusted, ', é compatível com a da literatura, de', M_reference)
+        print('A massa de', M_adjusted, 'GeV que obtivemos É compatível com a da literatura')
     else:
-        print('A massa que obtivemos, de', M_adjusted, ', NÃO é compatível com a da literatura, de', M_reference)
+        print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
+        
+# Applying the chi-square statistic test to verify the quality of the fit: 
+    z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
+    
+    for i in range(bars - 1):
+        k = lowerlimit + i*(upperlimit - lowerlimit)/bars
+        l = breitwigner(k, best[0], best[1], best[2], best[3], best[4])
+        z.append(l)
+    
+    divergencia, valorp = chisquare(f_obs = y, f_exp = z)
+
+    print("")
+    print("É possível avaliar a qualidade do ajuste executado a partir do teste do chi-quadrado.")
+    print("Após realizar este teste, quanto menor o valor obtido, maior a qualidade do ajuste.")
+    print("Neste caso, o valor encontrado foi de aproximadamente:", round(divergencia,3))
