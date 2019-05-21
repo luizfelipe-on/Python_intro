@@ -256,12 +256,12 @@ if ajuste == 3:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
-    print("Suposições Iniciais:")
-    FWHM = float(input('Suposição Inicial da largura à meia-altura (FWHM): '))
-    Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
-    a = float(input('Suposição Inicial da inclinação usada para notar o efeito de background (a): '))
-    b = float(input('Suposição Inicial da intersecção em y usada para notar o efeito de background (b): '))
-    A = float(input('Suposição Inicial da altura da distribuição Breit-Wigner (A): '))
+    print('Suposições Iniciais:')
+    FWHM = float(input('Suposição inicial da largura à meia-altura (FWHM): '))
+    Mo = float(input('Suposição inicial da massa invariante (Mo): '))
+    a = float(input('Suposição inicial da inclinação usada para notar o efeito de background (a): '))
+    b = float(input('Suposição inicial da intersecção em y usada para notar o efeito de background (b): '))
+    A = float(input('Suposição inicial da altura da distribuição Breit-Wigner (A): '))
     print("")
     initials = [FWHM, Mo, a, b, A]
 
@@ -283,7 +283,7 @@ if ajuste == 3:
         error = np.sqrt(np.diag(covariance))
 
 # Printing the best values and uncertainties gotten from the optimization:
-    print("Valores e Incertezas da Optimização:")
+    print('Valores e Incertezas da Optimização:')
     first = "Valor optimizado da largura à meia-altura (FWHM) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
     third = "Valor optimizado da inclinação (a) = {} +- {}".format(best[2], error[2])
@@ -304,40 +304,37 @@ if ajuste == 3:
     plt.legend()
     plt.show()
     
-# Determining if the invariant mass obtained in the adjust is compatible with the 
-# one that can be found in the literature:
-    print('Compatibilidade entre a massa obtida pelo ajuste e a massa fornecida pela literatura:')
+# Determining if the invariant mass obtained in the adjust is compatible with the literature one:
     M_reference = 91.187621
-    print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV')
-    print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
-    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos,')
-    print('então HÁ compatibilidade. Do contrário, NÃO há compatibilidade.')
     M_adjusted = best[1]
     uncertainty = error[1]
     
+    print('Compatibilidade entre as massa do ajuste e da literatura:')
+    print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV')
+    print('A massa obtida no ajuste (em GeV) é de', second)
+    
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('A massa de', M_adjusted, 'GeV que obtivemos É compatível com a da literatura')
+        print('Segundo o teste de compatibilidade, a massa de', M_adjusted, 'GeV do ajuste É compatível com a da literatura \n')
     else:
-        print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
+        print('Segundo o teste de compatibilidade, mesmo considerando as incertezas a massa de', M_adjusted, 'GeV do ajuste NÃO é compatível com a da literatura \n')
         
-# Applying the chi-square statistic test to verify the quality of the fit: 
-    print("")
-    print("Teste do chi-quadrado para avaliar a qualidade do ajuste:")
+# Applying the chi-square statistic test to verify the quality of the fit:
+    print('Teste do chi-quadrado para avaliar a qualidade do ajuste:')
     
     z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
     
-    for i in range(bars - 1):
+    for i in range(bars-1):
         k = lowerlimit + i*(upperlimit - lowerlimit)/bars
         l = breitwigner(k, best[0], best[1], best[2], best[3], best[4])
         z.append(l)
     
     divergencia, valorp = chisquare(f_obs = y, f_exp = z)
-    
-    print("Neste caso, o valor encontrado foi de ~", round(divergencia,3))
-    print("Só que este valor ainda precisa ser normalizado, i.e, dividido pelo número de g.l.")
-    print("O número de g.l. é a diferença entre o número de bins e o número de parâmetros da função.")
+
+# Now we need the normalize the chi-square by dividing it by the number of freedom degrees.
+# PS: number of freedom degrees = number of bins - number of parameters of the function:
     
     num_param = len(initials)
     norm_divergencia = divergencia/(bars-num_param)
 
-    print("O chi-quadrado normalizado neste caso foi de ~", round(norm_divergencia,3))
+    print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
+    print('Neste caso o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), 'logo o ajuste foi adequado.')
