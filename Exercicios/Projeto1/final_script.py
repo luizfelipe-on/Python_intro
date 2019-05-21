@@ -1,4 +1,4 @@
-# Importing the modules:
+## Importing the modules:
 import math
 import numpy as np
 import pandas as pd
@@ -231,7 +231,7 @@ if ajuste == 3:
     print('Histograma abaixo revela o pico do bóson Z:')
     lowerlimit = 70
     upperlimit = 110
-    bars = 100
+    bars = 400
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
     histogram = plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
@@ -256,7 +256,7 @@ if ajuste == 3:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
-    print('Suposições Iniciais:')
+    print('I) Suposições Iniciais:')
     FWHM = float(input('Suposição inicial da largura à meia-altura (FWHM): '))
     Mo = float(input('Suposição inicial da massa invariante (Mo): '))
     a = float(input('Suposição inicial da inclinação usada para notar o efeito de background (a): '))
@@ -283,7 +283,7 @@ if ajuste == 3:
         error = np.sqrt(np.diag(covariance))
 
 # Printing the best values and uncertainties gotten from the optimization:
-    print('Valores e Incertezas da Optimização:')
+    print('II) Valores e Incertezas da Optimização:')
     first = "Valor optimizado da largura à meia-altura (FWHM) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
     third = "Valor optimizado da inclinação (a) = {} +- {}".format(best[2], error[2])
@@ -309,17 +309,17 @@ if ajuste == 3:
     M_adjusted = best[1]
     uncertainty = error[1]
     
-    print('Compatibilidade entre as massa do ajuste e da literatura:')
-    print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV')
-    print('A massa obtida no ajuste (em GeV) é de', second)
+    print('III) Compatibilidade entre as massa do ajuste e da literatura:')
+    print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV.')
+    print('A massa obtida no ajuste (em GeV) foi de', M_adjusted, 'GeV.')
     
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('Segundo o teste de compatibilidade, a massa de', M_adjusted, 'GeV do ajuste É compatível com a da literatura \n')
+        print('Segundo o teste de compatibilidade, a massa do ajuste É compatível com a da literatura. \n')
     else:
-        print('Segundo o teste de compatibilidade, mesmo considerando as incertezas a massa de', M_adjusted, 'GeV do ajuste NÃO é compatível com a da literatura \n')
+        print('Segundo o teste de compatibilidade, a massa do ajuste NÃO é compatível com a da literatura. \n')
         
 # Applying the chi-square statistic test to verify the quality of the fit:
-    print('Teste do chi-quadrado para avaliar a qualidade do ajuste:')
+    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
     
     z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
     
@@ -337,4 +337,4 @@ if ajuste == 3:
     norm_divergencia = divergencia/(bars-num_param)
 
     print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
-    print('Neste caso o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), 'logo o ajuste foi adequado.')
+    print('Neste caso o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
