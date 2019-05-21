@@ -30,10 +30,16 @@ x = 0.5*(histogram[1][0:-1] + histogram[1][1:])
 
 # Defining a function that describes Crystalball distribution for the fit:
 def crystalball_function(M, alpha, n, Mo, sigma):
+    mod_alpha = abs(alpha)
+    A = (n/mod_alpha)**n * np.exp(-mod_alpha**2/2)
+    B = (n/mod_alpha) - mod_alpha
+    C = (n/mod_alpha)*((n-1)**(-1)) * np.exp(-mod_alpha**2/2)
+    D = np.sqrt(math.pi/2) * (1+erf(mod_alpha/np.sqrt(2)))
+    N = (sigma*(C+D))**(-1)
     if (M-Mo)/sigma > -alpha: 
-        return sigma*(((n*np.exp(-(alpha**2)/2))/(abs(alpha)*(n-1))) + math.sqrt(math.pi/2)*(1+math.erf(abs(alpha)/math.sqrt(2))))**(-1) * np.np.exp(-(M-Mo)**2/(2*sigma**2))
-    if (M-Mo)/sigma <= -alpha:    
-        return sigma*(((n*np.exp(-(alpha**2)/2))/(abs(alpha)*(n-1))) + math.sqrt(math.pi/2)*(1+math.erf(abs(alpha)/math.sqrt(2))))**(-1) * ((n/abs(alpha))-abs(alpha)-((M-Mo)/sigma))**(-n) * (n/abs(alpha))**(n) * np.exp(-(alpha**2)/2)
+        return N*np.exp(-(M-Mo)**2/(2*sigma**2))
+    else:
+        return A*(B-((M-Mo)/sigma))**(-n)
           
 # Initial values for the optimization in the following order:
 alpha = float(input('alpha: '))
