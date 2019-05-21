@@ -332,7 +332,6 @@ if ajuste == 3:
 
 # Now we need the normalize the chi-square by dividing it by the number of freedom degrees.
 # PS: number of freedom degrees = number of bins - number of parameters of the function:
-    
     num_param = len(initials)
     norm_divergencia = divergencia/(bars-num_param)
 
