@@ -37,7 +37,7 @@ if ajuste == 1:
     def breitwigner(M, FWHM, Mo, a, b, A):
         return a*M+b+A*((2*np.sqrt(2)*Mo*FWHM*np.sqrt(Mo**2*(Mo**2+FWHM**2)))/(np.pi*np.sqrt(Mo**2+np.sqrt(Mo**2*(Mo**2+FWHM**2)))) )/((M**2-Mo**2)**2+Mo**2*FWHM**2)
 
-    print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A.')
+    print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A:')
     print('FWHM representa a largura à meia-altura;')
     print('Mo representa a massa invariante correspondente a esta FWHM;')
     print('a representa a inclinação usada para notar o efeito de background;')
@@ -46,11 +46,11 @@ if ajuste == 1:
            
 # Initial values for the optimization in the following order:
     print('I) Suposições Iniciais:')
-    FWHM = float(input('Suposição Inicial da largura à meia-altura (FWHM): '))
-    Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
-    a = float(input('Suposição Inicial da inclinação usada para notar o efeito de background (a): '))
-    b = float(input('Suposição Inicial da intersecção em y usada para notar o efeito de background (b): '))
-    A = float(input('Suposição Inicial da altura da distribuição Breit-Wigner (A): '))
+    FWHM = float(input('Suposição inicial da largura à meia-altura (FWHM): '))
+    Mo = float(input('Suposição inicial da massa invariante (Mo): '))
+    a = float(input('Suposição inicial da inclinação usada para notar o efeito de background (a): '))
+    b = float(input('Suposição inicial da intersecção em y usada para notar o efeito de background (b): '))
+    A = float(input('Suposição inicial da altura da distribuição Breit-Wigner (A): '))
     print("")
     initials = [FWHM, Mo, a, b, A]
 
@@ -148,7 +148,7 @@ if ajuste == 2:
     def gauss_function(M, h, Mo, sigma):
         return h*np.exp(-(M-Mo)**2/(2*sigma**2))
     
-    print('Uma curva Gaussiana ajusta bem este histograma caso o usuário entre com valores adequados de h, Mo e sigma.')
+    print('Uma curva Gaussiana ajusta bem este histograma caso o usuário entre com valores adequados de h, Mo e sigma:')
     print('h representa a altura do pico da distribuição;')
     print('Mo representa a massa invariante correspondente a esta altura;')
     print ('sigma representa o desvio padrão da distribuição.')
@@ -156,9 +156,9 @@ if ajuste == 2:
           
 # Initial values for the optimization in the following order:
     print('I) Suposições Iniciais:')
-    h = float(input('Suposição Inicial da altura máxima (h): '))
-    Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
-    sigma = float(input('Suposição Inicial do desvio padrão (sigma): '))
+    h = float(input('Suposição inicial da altura máxima (h): '))
+    Mo = float(input('Suposição inicial da massa invariante (Mo): '))
+    sigma = float(input('Suposição inicial do desvio padrão (sigma): '))
     print("")
     initials = [h, Mo, sigma]
 
@@ -250,7 +250,7 @@ if ajuste == 3:
     def breitwigner(M, FWHM, Mo, a, b, A):
         return a*M+b+A*((2*np.sqrt(2)*Mo*FWHM*np.sqrt(Mo**2*(Mo**2+FWHM**2)))/(np.pi*np.sqrt(Mo**2+np.sqrt(Mo**2*(Mo**2+FWHM**2)))) )/((M**2-Mo**2)**2+Mo**2*FWHM**2)
 
-    print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A.')
+    print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A:')
     print('FWHM representa a largura à meia-altura;')
     print('Mo representa a massa invariante correspondente a esta FWHM;')
     print('a representa a inclinação usada para notar o efeito de background;')
