@@ -1,4 +1,4 @@
-## Importing the modules:
+# Importing the modules:
 import math
 import numpy as np
 import pandas as pd
@@ -265,8 +265,7 @@ if ajuste == 3:
     print("")
     initials = [FWHM, Mo, a, b, A]
 
-# Importing the module used in the optimization, running the optimization
-# and calculating the uncertainties of the optimized parameters:
+# Importing the module used in the optimization, running the optimization and calculating the uncertainties of the optimized parameters:
     from scipy.optimize import curve_fit
     best, covariance = curve_fit(breitwigner, x, y, p0=initials, sigma=np.sqrt(y))
     error = np.sqrt(np.diag(covariance))
@@ -311,16 +310,16 @@ if ajuste == 3:
     
     print('III) Compatibilidade entre as massa do ajuste e da literatura:')
     print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV.')
-    print('A massa obtida no ajuste (em GeV) foi de', M_adjusted, 'GeV.')
+    print('A massa obtida no ajuste foi de', M_adjusted, 'GeV.')
     
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
         print('Segundo o teste de compatibilidade, a massa do ajuste É compatível com a da literatura. \n')
     else:
         print('Segundo o teste de compatibilidade, a massa do ajuste NÃO é compatível com a da literatura. \n')
         
-# Applying the chi-square statistic test to verify the quality of the fit:
-    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
-    
+# Applying the chi-square statistic test to verify the quality of the fit.
+# After estimating the chi-square, we must normalize it by dividing it by the number of freedom degrees.
+# PS: number of freedom degrees = number of bins - number of parameters of the function:    
     z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
     
     for i in range(bars-1):
@@ -330,10 +329,9 @@ if ajuste == 3:
     
     divergencia, valorp = chisquare(f_obs = y, f_exp = z)
 
-# Now we need the normalize the chi-square by dividing it by the number of freedom degrees.
-# PS: number of freedom degrees = number of bins - number of parameters of the function:
     num_param = len(initials)
     norm_divergencia = divergencia/(bars-num_param)
-
+    
+    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
     print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
-    print('Neste caso o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
+    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
