@@ -20,7 +20,7 @@ if ajuste == 1:
     print('Histograma abaixo revela o pico de J/psi:')
     lowerlimit = 2.8 
     upperlimit = 3.4
-    bars = 100
+    bars = 400
     limitedmasses = invariant_mass[(invariant_mass > lowerlimit) & (invariant_mass < upperlimit)]
     histogram = plt.hist(limitedmasses, bins=bars, range=(lowerlimit,upperlimit))
     plt.xlabel('Invariant mass [GeV]')
@@ -45,7 +45,7 @@ if ajuste == 1:
     print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
-    print("Suposições Iniciais:")
+    print('I) Suposições Iniciais:')
     FWHM = float(input('Suposição Inicial da largura à meia-altura (FWHM): '))
     Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
     a = float(input('Suposição Inicial da inclinação usada para notar o efeito de background (a): '))
@@ -72,7 +72,7 @@ if ajuste == 1:
         error = np.sqrt(np.diag(covariance))
 
 # Printing the best values and uncertainties gotten from the optimization:
-    print("Valores e Incertezas da Optimização:")
+    print('II) Valores e Incertezas da Optimização:')
     first = "Valor optimizado da largura à meia-altura (FWHM) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
     third = "Valor optimizado da inclinação (a) = {} +- {}".format(best[2], error[2])
@@ -93,38 +93,39 @@ if ajuste == 1:
     plt.legend()
     plt.show()
     
-# Determining if the invariant mass obtained in the adjust is compatible with the 
-# one that can be found in the literature:
+# Determining if the invariant mass obtained in the adjust is compatible with the literature one:
     M_reference = 3.0969
-    print('De acordo com a literatura, a massa de J/psi é:', M_reference, 'GeV')
-    print("")
-    print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
-    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos, então HÁ compatibilidade.')
-    print('Caso o módulo dessa diferença for maior do que o dobro do erro da massa que determinamos, então NÃO há compatibilidade.')
-    print("")
     M_adjusted = best[1]
     uncertainty = error[1]
     
+    print('III) Compatibilidade entre as massa do ajuste e da literatura:')
+    print('De acordo com a literatura, a massa de J/psi é de', M_reference, 'GeV.')
+    print('A massa obtida no ajuste foi de', M_adjusted, 'GeV.')
+    
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('A massa de', M_adjusted, 'GeV que obtivemos É compatível com a da literatura')
+        print('Segundo o teste de compatibilidade, a massa do ajuste É compatível com a da literatura. \n')
     else:
-        print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
+        print('Segundo o teste de compatibilidade, a massa do ajuste NÃO é compatível com a da literatura. \n')
         
-# Applying the chi-square statistic test to verify the quality of the fit: 
+# Applying the chi-square statistic test to verify the quality of the fit.
+# After estimating the chi-square, we must normalize it by dividing it by the number of freedom degrees.
+# PS: number of freedom degrees = number of bins - number of parameters of the function:    
     z = [breitwigner(lowerlimit, best[0], best[1], best[2], best[3], best[4])]
     
-    for i in range(bars - 1):
+    for i in range(bars-1):
         k = lowerlimit + i*(upperlimit - lowerlimit)/bars
         l = breitwigner(k, best[0], best[1], best[2], best[3], best[4])
         z.append(l)
     
     divergencia, valorp = chisquare(f_obs = y, f_exp = z)
 
-    print("")
-    print("É possível avaliar a qualidade do ajuste executado a partir do teste do chi-quadrado.")
-    print("Após realizar este teste, quanto menor o valor obtido, maior a qualidade do ajuste.")
-    print("Neste caso, o valor encontrado foi de aproximadamente:", round(divergencia,3))
-
+    num_param = len(initials)
+    norm_divergencia = divergencia/(bars-num_param)
+    
+    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
+    print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
+    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
+    
 # If the peak of upsilon was chosen, the following histogram can be plotted:
 if ajuste == 2:
     print('Histograma abaixo revela o pico de upsilon:')
@@ -154,7 +155,7 @@ if ajuste == 2:
     print('DICA: Em uma distribuição gaussiana, o desvio padrão vale aproximadamente metade da largura à meia-altura. \n')
           
 # Initial values for the optimization in the following order:
-    print("Suposições Iniciais:")
+    print('I) Suposições Iniciais:')
     h = float(input('Suposição Inicial da altura máxima (h): '))
     Mo = float(input('Suposição Inicial da massa invariante (Mo): '))
     sigma = float(input('Suposição Inicial do desvio padrão (sigma): '))
@@ -177,7 +178,7 @@ if ajuste == 2:
         error = np.sqrt(np.diag(covariance))
     
 # Printing the best values and uncertainties gotten from the optimization:
-    print("Valores e Incertezas da Optimização:")
+    print('II) Valores e Incertezas da Optimização:')
     first = "Valor optimizado da altura máxima (h) = {} +- {}".format(best[0], error[0])
     second = "Valor optimizado da massa invariante (Mo) = {} +- {}".format(best[1], error[1])
     third = "Valor optimizado do desvio padrão (sigma) = {} +- {}".format(best[2], error[2])
@@ -194,37 +195,38 @@ if ajuste == 2:
     plt.legend()
     plt.show()
     
-# Determining if the invariant mass obtained in the adjust is compatible with the 
-# one that can be found in the literature:
+# Determining if the invariant mass obtained in the adjust is compatible with the literature one:
     M_reference = 9.4603026
-    print('De acordo com a literatura, a massa de upsilon é:', M_reference, 'GeV')
-    print("")
-    print('Podemos verificar se a massa que obtivemos está de acordo com a da literatura usando o teste de compatibilidade.')
-    print('No caso, se o módulo da diferença entre estas duas massas for menor ou igual ao dobro do erro da massa que determinamos, então HÁ compatibilidade.')
-    print('Caso o módulo dessa diferença for maior do que o dobro do erro da massa que determinamos, então NÃO há compatibilidade.')
-    print("")
     M_adjusted = best[1]
     uncertainty = error[1]
     
+    print('III) Compatibilidade entre as massa do ajuste e da literatura:')
+    print('De acordo com a literatura, a massa de upsilon é de', M_reference, 'GeV.')
+    print('A massa obtida no ajuste foi de', M_adjusted, 'GeV.')
+    
     if abs(M_adjusted-M_reference) <= 2*uncertainty:
-        print('A massa de', M_adjusted, 'GeV que obtivemos É compatível com a da literatura')
+        print('Segundo o teste de compatibilidade, a massa do ajuste É compatível com a da literatura. \n')
     else:
-        print('Mesmo considerando as incertezas, a massa de', M_adjusted, 'GeV que obtivemos NÃO é compatível com a da literatura')
+        print('Segundo o teste de compatibilidade, a massa do ajuste NÃO é compatível com a da literatura. \n')
         
-# Applying the chi-square statistic test to verify the quality of the fit: 
+# Applying the chi-square statistic test to verify the quality of the fit.
+# After estimating the chi-square, we must normalize it by dividing it by the number of freedom degrees.
+# PS: number of freedom degrees = number of bins - number of parameters of the function:    
     z = [gauss_function(lowerlimit, best[0], best[1], best[2])]
     
-    for i in range(bars - 1):
+    for i in range(bars-1):
         k = lowerlimit + i*(upperlimit - lowerlimit)/bars
         l = gauss_function(k, best[0], best[1], best[2])
         z.append(l)
     
     divergencia, valorp = chisquare(f_obs = y, f_exp = z)
 
-    print("")
-    print("É possível avaliar a qualidade do ajuste executado a partir do teste do chi-quadrado.")
-    print("Após realizar este teste, quanto menor o valor obtido, maior a qualidade do ajuste.")
-    print("Neste caso, o valor encontrado foi de aproximadamente:", round(divergencia,3))
+    num_param = len(initials)
+    norm_divergencia = divergencia/(bars-num_param)
+    
+    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
+    print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
+    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
 
 # If the peak of the boson Z was chosen, the following histogram can be plotted:
 if ajuste == 3:
