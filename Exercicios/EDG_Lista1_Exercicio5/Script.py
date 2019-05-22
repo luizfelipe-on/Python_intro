@@ -32,5 +32,5 @@ plt.show()
 # Calculando média e desvio padrão das magnitudes absolutas desta população estelar:
 average = np.mean(mag_abs)
 sd = np.std(mag_abs)
-print 'A magnitude absoluta média da amostra observada é de aproximadamente', round(average,3)
-print 'O desvio padrão da amostra observada é de aproximadamente', round(sd,3)
+print('A magnitude absoluta média da amostra observada é de aproximadamente', round(average,3))
+print('O desvio padrão da amostra observada é de aproximadamente', round(sd,3))
