@@ -38,11 +38,11 @@ if ajuste == 1:
         return a*M+b+A*((2*np.sqrt(2)*Mo*FWHM*np.sqrt(Mo**2*(Mo**2+FWHM**2)))/(np.pi*np.sqrt(Mo**2+np.sqrt(Mo**2*(Mo**2+FWHM**2)))) )/((M**2-Mo**2)**2+Mo**2*FWHM**2)
 
     print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A.')
-    print('FWHM representa uma suposição inicial da largura à meia-altura;')
-    print('Mo representa uma suposição inicial da massa invariante correspondente a esta FWHM;')
-    print('a representa uma suposição inicial da inclinação usada para notar o efeito de background;')
-    print('b representa uma suposição inicial da intersecção em y usada para notar o efeito de background;')
-    print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
+    print('FWHM representa a largura à meia-altura;')
+    print('Mo representa a massa invariante correspondente a esta FWHM;')
+    print('a representa a inclinação usada para notar o efeito de background;')
+    print('b representa a intersecção em y usada para notar o efeito de background;')
+    print('A representa a altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
     print('I) Suposições Iniciais:')
@@ -98,7 +98,7 @@ if ajuste == 1:
     M_adjusted = best[1]
     uncertainty = error[1]
     
-    print('III) Compatibilidade entre as massa do ajuste e da literatura:')
+    print('III) Compatibilidade entre as massas do ajuste e da literatura:')
     print('De acordo com a literatura, a massa de J/psi é de', M_reference, 'GeV.')
     print('A massa obtida no ajuste foi de', M_adjusted, 'GeV.')
     
@@ -122,9 +122,9 @@ if ajuste == 1:
     num_param = len(initials)
     norm_divergencia = divergencia/(bars-num_param)
     
-    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
+    print('IV) Teste do chi-quadrado:')
     print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
-    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
+    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste é adequado.')
     
 # If the peak of upsilon was chosen, the following histogram can be plotted:
 if ajuste == 2:
@@ -149,9 +149,9 @@ if ajuste == 2:
         return h*np.exp(-(M-Mo)**2/(2*sigma**2))
     
     print('Uma curva Gaussiana ajusta bem este histograma caso o usuário entre com valores adequados de h, Mo e sigma.')
-    print('h representa uma suposição inicial da altura do pico da distribuição;')
-    print('Mo representa uma suposição inicial da massa invariante correspondente a esta altura;')
-    print ('sigma representa uma suposição inicial do desvio padrão da distribuição.')
+    print('h representa a altura do pico da distribuição;')
+    print('Mo representa a massa invariante correspondente a esta altura;')
+    print ('sigma representa o desvio padrão da distribuição.')
     print('DICA: Em uma distribuição gaussiana, o desvio padrão vale aproximadamente metade da largura à meia-altura. \n')
           
 # Initial values for the optimization in the following order:
@@ -200,7 +200,7 @@ if ajuste == 2:
     M_adjusted = best[1]
     uncertainty = error[1]
     
-    print('III) Compatibilidade entre as massa do ajuste e da literatura:')
+    print('III) Compatibilidade entre as massas do ajuste e da literatura:')
     print('De acordo com a literatura, a massa de upsilon é de', M_reference, 'GeV.')
     print('A massa obtida no ajuste foi de', M_adjusted, 'GeV.')
     
@@ -224,9 +224,9 @@ if ajuste == 2:
     num_param = len(initials)
     norm_divergencia = divergencia/(bars-num_param)
     
-    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
+    print('IV) Teste do chi-quadrado:')
     print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
-    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
+    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste é adequado.')
 
 # If the peak of the boson Z was chosen, the following histogram can be plotted:
 if ajuste == 3:
@@ -251,11 +251,11 @@ if ajuste == 3:
         return a*M+b+A*((2*np.sqrt(2)*Mo*FWHM*np.sqrt(Mo**2*(Mo**2+FWHM**2)))/(np.pi*np.sqrt(Mo**2+np.sqrt(Mo**2*(Mo**2+FWHM**2)))) )/((M**2-Mo**2)**2+Mo**2*FWHM**2)
 
     print('Uma curva Breit-Wigner ajusta bem este histograma caso o usuário entre com valores adequados de FWHM, Mo, a, b, A.')
-    print('FWHM representa uma suposição inicial da largura à meia-altura;')
-    print('Mo representa uma suposição inicial da massa invariante correspondente a esta FWHM;')
-    print('a representa uma suposição inicial da inclinação usada para notar o efeito de background;')
-    print('b representa uma suposição inicial da intersecção em y usada para notar o efeito de background;')
-    print('A representa uma suposição inicial da altura da distribuição Breit-Wigner. \n')
+    print('FWHM representa a largura à meia-altura;')
+    print('Mo representa a massa invariante correspondente a esta FWHM;')
+    print('a representa a inclinação usada para notar o efeito de background;')
+    print('b representa a intersecção em y usada para notar o efeito de background;')
+    print('A representa a altura da distribuição Breit-Wigner. \n')
            
 # Initial values for the optimization in the following order:
     print('I) Suposições Iniciais:')
@@ -310,7 +310,7 @@ if ajuste == 3:
     M_adjusted = best[1]
     uncertainty = error[1]
     
-    print('III) Compatibilidade entre as massa do ajuste e da literatura:')
+    print('III) Compatibilidade entre as massas do ajuste e da literatura:')
     print('De acordo com a literatura, a massa do bóson é de', M_reference, 'GeV.')
     print('A massa obtida no ajuste foi de', M_adjusted, 'GeV.')
     
@@ -334,6 +334,6 @@ if ajuste == 3:
     num_param = len(initials)
     norm_divergencia = divergencia/(bars-num_param)
     
-    print('IV) Teste do chi-quadrado para avaliar a qualidade do ajuste:')
+    print('IV) Teste do chi-quadrado:')
     print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
-    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste foi adequado.')
+    print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste é adequado.')
