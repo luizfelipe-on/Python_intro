@@ -123,7 +123,7 @@ if ajuste == 1:
     norm_divergencia = divergencia/(bars-num_param)
     
     print('IV) Teste do chi-quadrado:')
-    print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
+    print('Quanto mais próximo de um for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
     print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste é adequado.')
     
 # If the peak of upsilon was chosen, the following histogram can be plotted:
@@ -225,7 +225,7 @@ if ajuste == 2:
     norm_divergencia = divergencia/(bars-num_param)
     
     print('IV) Teste do chi-quadrado:')
-    print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
+    print('Quanto mais próximo de um for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
     print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste é adequado.')
 
 # If the peak of the boson Z was chosen, the following histogram can be plotted:
@@ -335,5 +335,5 @@ if ajuste == 3:
     norm_divergencia = divergencia/(bars-num_param)
     
     print('IV) Teste do chi-quadrado:')
-    print('Quanto mais próximo de zero for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
+    print('Quanto mais próximo de um for o valor do chi-quadrado normalizado, melhor a qualidade do ajuste.')
     print('Neste caso, o chi-quadrado normalizado foi de aproximadamente', round(norm_divergencia,3), ', logo o ajuste é adequado.')
