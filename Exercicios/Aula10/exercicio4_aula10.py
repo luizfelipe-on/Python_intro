@@ -1,5 +1,3 @@
-# AULA 10, EXERCÍCIO 4
-
 import numpy as np
 from math import pi, sinh, cosh
 import matplotlib.pyplot as plt
