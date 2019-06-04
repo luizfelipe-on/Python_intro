@@ -1,12 +1,10 @@
-# AULA 10, EXERCÍCIO 3
-
 import numpy as np
 from math import pi, sin, cos
 import matplotlib.pyplot as plt
 
 # 1) Integral de sin(x), com 0 <= x <= 2pi:
 I = cos(0)-cos(2*pi)
-print 'Integral de sin(x), com 0 <= x <= 2pi, vale:', round(I,5)
+print('Integral de sin(x), com 0 <= x <= 2pi, vale:', round(I,5))
 
 # Definindo os valores de x, y e plotando o gráfico em barras:
 x=np.linspace(0,2*pi,50)
@@ -27,16 +25,16 @@ S = 0
 for xi in x:
     S = S + sin(xi)*2*pi/50 
     
-print 'Soma das 50 barras =', round(S,5)
+print('Soma das 50 barras =', round(S,5))
 
 S1= 0
 for xi in x1:
     S1 = S1 + sin(xi)*2*pi/100
-print 'Soma das 100 barras = ', round(S1,5), '\n'
+print('Soma das 100 barras = ', round(S1,5), '\n')
 
 # 2) Integral de cos(x), com 0 <= x <= 2pi:
 I = sin(2*pi)-sin(0)
-print 'Integral de cos(x), com 0 <= x <= 2pi, vale:', round(I,5)
+print('Integral de cos(x), com 0 <= x <= 2pi, vale:', round(I,5))
 
 # Definindo os valores de x, y e plotando o gráfico em barras:
 x=np.linspace(0,2*pi,500)
@@ -57,9 +55,9 @@ S = 0
 for xi in x:
     S = S + cos(xi)*2*pi/500
     
-print 'Soma das 500 barras =', round(S,5)
+print('Soma das 500 barras =', round(S,5))
 
 S1= 0
 for xi in x1:
     S1 = S1 + cos(xi)*2*pi/1000
-print 'Soma das 1000 barras = ', round(S1,5)
+print('Soma das 1000 barras = ', round(S1,5))
