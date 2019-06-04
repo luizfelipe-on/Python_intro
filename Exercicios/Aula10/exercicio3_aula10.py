@@ -2,7 +2,7 @@ import numpy as np
 from math import pi, sin, cos
 import matplotlib.pyplot as plt
 
-# 1) Integral de sen(x), com 0 <= x <= 2pi:
+# 1) Integral de sin(x), com 0 <= x <= 2pi:
 I = cos(0)-cos(2*pi)
 print('Integral de sin(x), com 0 <= x <= 2pi, vale:', round(I,5))
 
